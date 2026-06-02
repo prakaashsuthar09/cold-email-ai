@@ -1,0 +1,96 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* LIGHT MODE */
+  --bg-main: #f8fafc;
+  --bg-sidebar: #ffffff;
+  --bg-card: #ffffff;
+  --bg-input: #f1f5f9;
+
+  --text-main: #121212;
+  --text-secondary: #475569;
+
+  --border-color: #dbe3ee;
+
+  --primary: #000000;
+  --text-primary:#f8fafc;
+}
+
+.dark {
+  /* VS CODE STYLE DARK */
+  --bg-main: #1f1f1f;
+  --bg-sidebar: #121212;
+  --bg-card: #121212;
+  --bg-input: #1f1f1f;
+
+  --text-main: #f8fafc;
+  --text-secondary: #94a3b8;
+
+  --border-color: #2a3441;
+
+  --primary: #ffffff;
+  --text-primary:#121212;
+}
+
+.input-style {
+  background: var(--bg-input);
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+}
+
+.input-style::placeholder {
+  color: var(--text-secondary);
+}
+
+body {
+  background: var(--bg-main);
+  color: var(--text-main);
+  transition:
+    background 0.3s ease,
+    color 0.3s ease;
+}
+
+* {
+  transition:
+    background-color 0.20s ease,
+    border-color 0.20s ease,
+    color 0.20s ease;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+/* LIGHT MODE SCROLLBAR */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* DARK MODE SCROLLBAR */
+.dark ::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #374151;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #4b5563;
+}
