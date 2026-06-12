@@ -39,6 +39,35 @@ cold-email-ai/
 └── .gitignore
 ```
 
+### Login Page
+
+![Login Page](./screenshots/signup.png)
+![Login Page](./screenshots/login.png)
+
+### Dashboard
+
+![Dashboard](./screenshots/dashboard.lightmode.png)
+![Dashboard](./screenshots/dashboard.darkmode.png)
+
+### Email Generator
+
+![Email Generator](./screenshots/emailresult.png)
+![Email Generator](./screenshots/examleavemail.png)
+
+
+## Environment Variables
+
+Create a .env file inside the server folder.
+
+PORT=5000
+MONGO_URI=your_mongodb_uri
+JWT_SECRET=your_jwt_secret
+OPENROUTER_API_KEY=openrouter api key 
+EMAIL_USER= for the email sent throu the your email address
+EMAIL_PASS= 16digit password of your email 
+GOOGLE_CLIENT_ID=google client id 
+GOOGLE_CLIENT_SECRET=google client secret 
+
 ## Installation
 
 ### Clone Repository
