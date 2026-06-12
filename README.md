@@ -1,6 +1,6 @@
 # Cold Email AI 
 
-AI-powered Cold Email Generator built using MERN Stack and Gemini AI.
+AI-powered Cold Email Generator built using MERN Stack and OpenRouter AI.
 
 ## Features
 
