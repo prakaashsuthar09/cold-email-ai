@@ -59,6 +59,7 @@ cold-email-ai/
 
 Create a .env file inside the server folder.
 
+```bash
 PORT=5000
 MONGO_URI=your_mongodb_uri
 JWT_SECRET=your_jwt_secret
@@ -67,6 +68,7 @@ EMAIL_USER= for the email sent throu the your email address
 EMAIL_PASS= 16digit password of your email 
 GOOGLE_CLIENT_ID=google client id 
 GOOGLE_CLIENT_SECRET=google client secret 
+```
 
 ## Installation
 
