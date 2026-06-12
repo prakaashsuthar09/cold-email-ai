@@ -26,27 +26,66 @@ export default function EmailPreview({ selectedEmail }) {
 
   // PDF DOWNLOAD
   const handleDownloadPDF = () => {
-  const doc = new jsPDF();
+    if (!selectedEmail) return;
 
-  doc.setFont("helvetica", "normal");
+    const doc = new jsPDF({
+      unit: "mm",
+      format: "a4",
+    });
 
-  doc.setFontSize(18);
-  doc.text(selectedEmail.title, 20, 20);
+    const pageWidth = doc.internal.pageSize.getWidth();
 
-  doc.setLineWidth(0.3);
-  doc.line(20, 25, 190, 25);
+    // TITLE
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(20);
 
-  doc.setFontSize(11);
+    doc.text(selectedEmail.title || "Email", pageWidth / 2, 20, {
+      align: "center",
+    });
 
-  const body = doc.splitTextToSize(
-    selectedEmail.generatedEmail,
-    170
-  );
+    // Divider
+    doc.setDrawColor(180);
+    doc.line(20, 28, 190, 28);
 
-  doc.text(body, 20, 35);
+    // EMAIL CONTENT
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(10);
 
-  doc.save(`${selectedEmail.title}.pdf`);
-};
+    const emailText = selectedEmail.generatedEmail || "";
+
+    const paragraphs = emailText.split("\n").filter((p) => p.trim() !== "");
+
+    let y = 40;
+
+    paragraphs.forEach((paragraph) => {
+      const lines = doc.splitTextToSize(paragraph, 160);
+
+      doc.text(lines, 20, y);
+
+      y += lines.length * 6 + 6;
+
+      // New Page
+      if (y > 270) {
+        doc.addPage();
+        y = 20;
+      }
+    });
+
+    // Footer
+    const pageCount = doc.internal.getNumberOfPages();
+
+    for (let i = 1; i <= pageCount; i++) {
+      doc.setPage(i);
+
+      doc.setFontSize(10);
+
+      doc.text(`Page ${i} of ${pageCount}`, pageWidth / 2, 290, {
+        align: "center",
+      });
+    }
+
+    doc.save(`${selectedEmail.title || "Generated_Email"}.pdf`);
+  };
 
   return (
     <div className="flex-1 h-full overflow-hidden bg-[var(--bg-main)]">
@@ -97,7 +136,7 @@ export default function EmailPreview({ selectedEmail }) {
                 </button>
 
                 <button
-                  onClick={handlePDF}
+                  onClick={handleDownloadPDF}
                   className="
                     h-10 w-10
                     rounded-xl
@@ -114,13 +153,17 @@ export default function EmailPreview({ selectedEmail }) {
                   className="
                     h-10 px-4
                     rounded-xl
-                    bg-gradient-to-r
-                    from-violet-600
-                    to-purple-600
-                    text-white
                     flex items-center gap-2
-                    hover:scale-105
+                    bg-white/10
+                    backdrop-blur-xl
+                    border border-white/20
+                    shadow-[0_4px_10px_rgba(99,102,241,0.25)]
+                    text-[var(--text-main)]
+                    hover:bg-white/15
+                    hover:border-white/30
+                    hover:shadow-[0_2px_5px_rgba(99,102,241,0.15)]
                     transition-all
+                    duration-300
                   "
                 >
                   <FiRefreshCw size={15} />

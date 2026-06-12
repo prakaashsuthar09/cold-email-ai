@@ -102,6 +102,8 @@ export default function EmailForm({ fetchHistory, setSelectedEmail }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    console.log("SUBMIT CLICKED");
+
     const isLeaveType = studentSubPurpose.includes("Leave");
 
     if (!formData.fullName || !formData.purpose) {
@@ -598,20 +600,20 @@ export default function EmailForm({ fetchHistory, setSelectedEmail }) {
               </div>
             )}
           </div>
-        </form>
-        {/* FIXED CHATGPT STYLE TEXTAREA */}
-        <div
-          className="
+
+          {/* FIXED CHATGPT STYLE TEXTAREA */}
+          <div
+            className="
             border-gray-800
-            mb-3
+            mb-2
             p-2
             px-5
             bg-transparent
             shrink-0
           "
-        >
-          <div
-            className="
+          >
+            <div
+              className="
               relative
               rounded-3xl
               pr-10
@@ -623,19 +625,19 @@ export default function EmailForm({ fetchHistory, setSelectedEmail }) {
               focus-within:border-indigo-500
               focus-within:shadow-[0_0_10px_rgba(99,102,241,0.2)]
             "
-          >
-            {/* TEXTAREA */}
-            <textarea
-              ref={textareaRef}
-              name="notes"
-              value={formData.notes}
-              rows={1}
-              onChange={(e) => {
-                handleChange(e);
-                handleTextareaInput(e);
-              }}
-              placeholder="Additional Notes..."
-              className="
+            >
+              {/* TEXTAREA */}
+              <textarea
+                ref={textareaRef}
+                name="notes"
+                value={formData.notes}
+                rows={1}
+                onChange={(e) => {
+                  handleChange(e);
+                  handleTextareaInput(e);
+                }}
+                placeholder="Additional Notes..."
+                className="
                 w-full
                 bg-[var(--bg-input)]
                 text-[var(--text-main)]
@@ -648,18 +650,18 @@ export default function EmailForm({ fetchHistory, setSelectedEmail }) {
                 max-h-[180px]
                 overflow-y-auto
               "
-            />
+              />
 
-            {/* SEND BUTTON */}
-            <button
-              type="submit"
-              disabled={loading}
-              className="
+              {/* SEND BUTTON */}
+              <button
+                type="submit"
+                disabled={loading}
+                className="
                 absolute
-                bottom-1
-                right-1
-                h-10
-                w-10
+                bottom-1.5
+                right-1.5
+                h-9
+                w-9
                 rounded-3xl
                 bg-[var(--primary)]
                 text-[var(--text-primary)]
@@ -670,15 +672,16 @@ export default function EmailForm({ fetchHistory, setSelectedEmail }) {
                 transition-all
                 disabled:opacity-50
               "
-            >
-              {loading ? (
-                <FiLoader size={16} className="animate-spin" />
-              ) : (
-                <FiSend size={15} />
-              )}
-            </button>
+              >
+                {loading ? (
+                  <FiLoader size={16} className="animate-spin" />
+                ) : (
+                  <FiSend size={15} />
+                )}
+              </button>
+            </div>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   );

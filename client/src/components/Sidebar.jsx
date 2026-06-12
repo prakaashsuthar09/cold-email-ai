@@ -8,6 +8,7 @@ export default function Sidebar({
   open,
   setOpen,
   history,
+  selectedEmail,
   setSelectedEmail,
   setShowForm,
 }) {
@@ -80,6 +81,7 @@ export default function Sidebar({
         {/* MENU BUTTONS */}
         <div className="px-3 mt-4 space-y-3">
           {/* NEW EMAIL */}
+
           <button
             onClick={() => {
               setSelectedEmail(null);
@@ -114,8 +116,10 @@ export default function Sidebar({
               px-4 pb-4
             "
           >
-            <div className="flex items-center justify-between border-b border-[var(--border-color)]
-              pb-3 mb-3 mt-4">
+            <div
+              className="flex items-center justify-between border-b border-[var(--border-color)]
+              pb-3 mb-3 mt-4"
+            >
               <p className="text-xs uppercase tracking-wider text-[var(--text-secondary)]">
                 Recent
               </p>
@@ -126,48 +130,60 @@ export default function Sidebar({
             </div>
 
             <div className="flex-1 overflow-y-auto pr-2 custom-scroll">
-              {history.map((item) => (
-                <button
-                  key={item._id}
-                  onClick={() => {
-                    setSelectedEmail(item);
-                    setShowForm(false);
-                  }}
-                  className="
-                    w-full
-                    flex
-                    items-center
-                    gap-2
-                    px-3
-                    py-2.5
-                    rounded-xl
-                    hover:bg-[var(--bg-input)]
-                    transition-all
-                    text-left
-                    group
-                  "
-                >
-                  <FiMail
-                    size={16}
-                    className="
-                      shrink-0
-                      text-[var(--text-main)]
-                      opacity-70
-                    "
-                  />
+              {history.map((item) => {
+                const isActive = selectedEmail?._id === item._id;
 
-                  <span
-                    className="
-                      text-sm
-                      text-[var(--text-main)]
-                      truncate
-                      font-medium
-                    "
+                return (
+                  <button
+                    key={item._id}
+                    onClick={() => {
+                      setSelectedEmail(item);
+                      setShowForm(false);
+                    }}
+                    className={`
+                      w-full
+                      flex
+                      items-center
+                      gap-2
+                      px-3
+                      py-2.5
+                      rounded-xl
+                      transition-all
+                      text-left
+                      group
+                                        
+                      ${
+                        isActive
+                          ? "bg-[var(--bg-input)] "
+                          : "hover:bg-[var(--bg-input)]"
+                      }
+                    `}
                   >
-                    {item.title}
-                  </span>
-                </button>
-              ))}
+                    <FiMail
+                      size={16}
+                      className={`
+                        shrink-0
+                        text-[var(--text-main)]
+                        transition-all
+                        ${isActive ? "opacity-100" : "opacity-70"}
+                      `}
+                    />
+
+                    <span
+                      className={`
+                        text-sm
+                        text-[var(--text-main)]
+                        truncate
+                        font-medium
+                        transition-all
+                        ${isActive ? "opacity-100" : "opacity-70"}
+                      `}
+                    >
+                      {item.title}
+                    </span>
+                  </button>
+                );
+              })}
             </div>
           </div>
         )}

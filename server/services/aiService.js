@@ -3,12 +3,14 @@ const axios = require("axios");
 const generateEmail = async (prompt) => {
   try {
 
+    console.log("API KEY =>", process.env.OPENROUTER_API_KEY);
+
     const response = await axios.post(
       "https://openrouter.ai/api/v1/chat/completions",
 
       {
         model:
-           "openai/gpt-oss-120b:free",
+          "openai/gpt-oss-120b:free",
 
         messages: [
           {

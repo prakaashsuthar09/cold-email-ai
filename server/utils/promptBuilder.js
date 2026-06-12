@@ -74,6 +74,15 @@ WRITING RULES
 - Keep the email concise but complete.
 - Make it ready to send without editing.
 
+LANGUAGE HANDLING
+---------
+- The user may provide notes, reasons, requests, or instructions in any language.
+- Detect the language automatically.
+- Understand the meaning and intent accurately.
+- Convert all user input into natural, fluent, professional English.
+- Never translate word-for-word.
+- Preserve the original meaning, context, dates, names, and requests.
+- The final email must always be written in professional English unless explicitly requested otherwise.
 
 Examples:
 

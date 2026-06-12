@@ -70,6 +70,7 @@ export default function Dashboard() {
         open={open}
         setOpen={setOpen}
         history={history}
+        selectedEmail={selectedEmail}
         setSelectedEmail={setSelectedEmail}
         setShowForm={setShowForm}
       />
